@@ -5,7 +5,7 @@ const cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
 const app = express();
 app.use((req, res, next) => {
-  const allowedOrigin = 'https://curious-platypus-651cab.netlify.app';
+  const allowedOrigin = 'https://sprightly-gumdrop-c46663.netlify.app';
   res.header('Access-Control-Allow-Origin', allowedOrigin);
   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
   res.header('Access-Control-Allow-Headers', 'Content-Type');
