@@ -4,11 +4,14 @@ const cookieParser = require('cookie-parser');
 
 const mongoose = require('mongoose');
 const app = express();
-app.use(cors({
-    origin: "*",
-    methods: ["POST", "GET", "PUT", "DELETE"],
-    credentials: true
-}));
+app.use((req, res, next) => {
+  const allowedOrigin = 'https://curious-platypus-651cab.netlify.app';
+  res.header('Access-Control-Allow-Origin', allowedOrigin);
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  res.header('Access-Control-Allow-Credentials', 'true'); // Allow credentials
+  next();
+});
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.static('public'));
