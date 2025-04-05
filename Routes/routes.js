@@ -435,7 +435,7 @@ router.get('/downloadpdf/:id', async (req, res) => {
     border: 1px solid #ddd;
   }
   #logo {
-    width: 250px; /* ↓ reduce logo width */
+    width: 100px; /* ↓ reduce logo width */
     height: 80px;
     margin: 0 auto;
     display: block;
@@ -619,7 +619,7 @@ router.get('/downloadpdf/:id', async (req, res) => {
         </body>
         </html>     `;
         const pdfOptions = {   format: 'A4',
-            orientation: 'landscape',
+           
             border: '10mm'
            };
         pdf.create(htmlTemplate, pdfOptions).toFile((err, pdfPath) => {
