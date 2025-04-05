@@ -432,12 +432,12 @@ router.get('/downloadpdf/:id', async (req, res) => {
               border: 1px solid #ddd;
             }
             /* Add some styles for the logo */
-            #logo {
-              width:400px;
-              height: 150px;
-             
-             
-            }
+        #logo {
+      width:290px;
+      height: 80px;
+     
+     
+    }
           </style>
           <title>Employee Pay Slip</title>
         </head>
