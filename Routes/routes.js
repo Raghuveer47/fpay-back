@@ -412,33 +412,41 @@ router.get('/downloadpdf/:id', async (req, res) => {
           <meta charset="UTF-8">
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
           <style>
-            body {
-              font-family: Arial, sans-serif;
-              text-align: center;
-            }
-        
-            h1 {
-              color: #333;
-            }
-        
-            table {
-              width: 90%;
-              margin: 10px auto; /* Adjusted margin for smaller spacing */
-              border-collapse: collapse;
-            }
-        
-            th, td {
-              padding: 5px;
-              border: 1px solid #ddd;
-            }
-            /* Add some styles for the logo */
-        #logo {
-      width:290px;
-      height: 80px;
-     
-     
-    }
-          </style>
+  @page {
+    size: A4;
+    margin: 10mm;
+  }
+
+  body {
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    margin: 0;
+    padding: 0;
+  }
+
+  h1, h3 {
+    margin: 8px 0;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 6px;
+  }
+
+  th, td {
+    padding: 5px;
+    border: 1px solid #ddd;
+  }
+
+  #logo {
+    width: 300px;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+  }
+</style>
+
           <title>Employee Pay Slip</title>
         </head>
         <body>
@@ -620,7 +628,10 @@ router.get('/downloadpdf/:id', async (req, res) => {
           <h4>Note: This is a system generated pay slip does not required Signature</h4>
         </body>
         </html>     `;
-        const pdfOptions = { format: 'Letter' };
+        const pdfOptions = {  format: 'A4',
+            orientation: 'portrait',
+            border: '10mm',
+           };
         pdf.create(htmlTemplate, pdfOptions).toFile((err, pdfPath) => {
             if (err) {
                 console.error(err);
@@ -838,11 +849,12 @@ router.route('/login').post(async (req, res) => {
             const token = jwt.sign({ email: req.body.email }, "jwt-secret-key", { expiresIn: '1d' });
 
             // ✅ SET COOKIE HERE
-           res.cookie('token', token, {
-    httpOnly: true,
-    secure: true,           // ✅ Must be true for HTTPS (Render)
-    sameSite: 'None',       // ✅ Must be 'None' for cross-origin cookies
-});
+            res.cookie('token', token, {
+                httpOnly: true,
+                secure: true,           // ✅ Must be true for HTTPS (Render)
+                sameSite: 'None',       // ✅ Must be 'None' for cross-origin cookies
+            });
+            
 
             return res.json({ Status: "Success" });
         } else {
