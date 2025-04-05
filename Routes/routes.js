@@ -838,11 +838,11 @@ router.route('/login').post(async (req, res) => {
             const token = jwt.sign({ email: req.body.email }, "jwt-secret-key", { expiresIn: '1d' });
 
             // ✅ SET COOKIE HERE
-            res.cookie('token', token, {
-                httpOnly: true,
-                secure: false,
-                sameSite: 'Lax',
-            });
+           res.cookie('token', token, {
+    httpOnly: true,
+    secure: true,           // ✅ Must be true for HTTPS (Render)
+    sameSite: 'None',       // ✅ Must be 'None' for cross-origin cookies
+});
 
             return res.json({ Status: "Success" });
         } else {
