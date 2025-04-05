@@ -416,36 +416,32 @@ router.get('/downloadpdf/:id', async (req, res) => {
     size: A4;
     margin: 10mm;
   }
-
   body {
     font-family: Arial, sans-serif;
-    font-size: 12px;
+    font-size: 10px; /* ↓ reduce font size */
     margin: 0;
     padding: 0;
   }
-
   h1, h3 {
-    margin: 8px 0;
+    margin: 6px 0; /* ↓ reduce heading spacing */
   }
-
   table {
     width: 100%;
     border-collapse: collapse;
-    margin-bottom: 6px;
+    margin-bottom: 4px; /* ↓ reduce table spacing */
   }
-
   th, td {
-    padding: 5px;
+    padding: 4px; /* ↓ reduce padding */
     border: 1px solid #ddd;
   }
-
   #logo {
-    width: 300px;
-    height: auto;
+    width: 250px; /* ↓ reduce logo width */
+    height: 80px;
     margin: 0 auto;
     display: block;
   }
 </style>
+
 
           <title>Employee Pay Slip</title>
         </head>
@@ -597,13 +593,7 @@ router.get('/downloadpdf/:id', async (req, res) => {
               <td>Other Deduction</td>
               <td>${employee.othdeduct}</td>
             </tr>
-            <tr>
-              <td>Performace Bonus</td>
-              <td>${employee.perbonusfix}</td>
-              <td>${employee.perbonusearn}</td>
-              <td></td>
-              <td></td>
-            </tr>
+            
             <tr>
               <td>Overtime</td>
               <td>${employee.otfix}</td>
@@ -628,9 +618,9 @@ router.get('/downloadpdf/:id', async (req, res) => {
           <h4>Note: This is a system generated pay slip does not required Signature</h4>
         </body>
         </html>     `;
-        const pdfOptions = {  format: 'A4',
-            orientation: 'portrait',
-            border: '10mm',
+        const pdfOptions = {   format: 'A4',
+            orientation: 'landscape',
+            border: '10mm'
            };
         pdf.create(htmlTemplate, pdfOptions).toFile((err, pdfPath) => {
             if (err) {
