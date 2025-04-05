@@ -435,7 +435,7 @@ router.get('/downloadpdf/:id', async (req, res) => {
     border: 1px solid #ddd;
   }
   #logo {
-    width: 100px; /* ↓ reduce logo width */
+    width: 200px; /* ↓ reduce logo width */
     height: 80px;
     margin: 0 auto;
     display: block;
