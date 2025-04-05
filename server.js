@@ -9,11 +9,15 @@ const app = express();
 
 
 app.use(cors({
-  origin: 'http://localhost:5173', // Adjust if using a different port
+  origin: [
+    'http://localhost:5173',
+    'https://sprightly-gumdrop-c46663.netlify.app'
+  ],
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
-  credentials: true,
+  credentials: true, // ✅ Required to send cookies
 }));
+
 
 app.use(cookieParser());
 app.use(express.json());
